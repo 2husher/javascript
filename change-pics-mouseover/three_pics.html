@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Select, option</title>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+    <script>
+      function get_im_base(im_src)
+      {
+        var n       = im_src.lastIndexOf("/");
+        var im_name = im_src.slice(n+1);
+        var im_base = im_name.match(/(.*)-.*/)[1];
+        return im_base;
+      }
+
+      window.onload = function()
+      {
+        var images = document.images;
+        for(var i=0; i<images.length; i++)
+        {
+          var image = images[i];
+          image.onmouseover = function(e) {
+            var im_base = get_im_base(this.src);
+            this.src = "images/" + im_base + "-color.jpg";
+          };
+          image.onmouseout = function(e) {
+            var im_base = get_im_base(this.src);
+            this.src = "images/" + im_base + "-bw.jpg";
+          };
+          image.onclick = function(e) {
+            var im_base = get_im_base(this.src);
+            var im_big  = "images/" + im_base + "-big.jpg";
+            window.open(im_big, 'big image',"height=800,width=1000");
+          };
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <img src="images/lotos-bw.jpg">
+    <img src="images/sky-bw.jpg">
+    <img src="images/bird-bw.jpg">
+  </body>
+</html>
