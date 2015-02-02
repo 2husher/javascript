@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Double click on list</title>
+</head>
+<body>
+  <script>
+    function deleteItem(item)
+    {
+      item.parentNode.removeChild(item);
+    }
+
+    var list = ["one", "two", "three", "four", "five"];
+    var html_list = document.createElement("ul");
+
+    for(var i=0; i<list.length; i++)
+    {
+        var html_item = document.createElement("li");
+        var text      = document.createTextNode(list[i]);
+        html_item.appendChild(text);
+        html_item.addEventListener("dblclick", function(){
+          deleteItem(this);
+        });
+        //html_item.setAttribute("ondblclick", "deleteItem()");
+        html_list.appendChild(html_item);
+    }
+    document.body.appendChild(html_list);
+  </script>
+</body>
+</html>
