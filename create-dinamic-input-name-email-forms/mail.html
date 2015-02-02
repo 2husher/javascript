@@ -1,0 +1,72 @@
+<html>
+  <head>
+		<title>E-mail</title>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+
+</head>
+<body>
+  <table>
+     <tbody id="contacts">
+        <tr>
+        <td colspan="3"><a href="#" onclick = "addContact();">Добавьте контакт</a></td>
+        </tr>
+        <tr>
+           <td width = 20 ></td>
+           <td>Имя </td>
+           <td>Email</td>
+        </tr>
+     </tbody>
+  </table>
+		<script>
+      var inputs = 0;
+
+      function addContact(){
+        var tbl    = document.getElementById("contacts");
+        var row    = document.createElement("tr");
+
+        var data1  = document.createElement("td");
+        data1.setAttribute("width", "20");
+        if(inputs > 0)
+        {
+          var img = document.createElement("img");
+          img.setAttribute("src", "del.jpg");
+          data1.appendChild(img);
+        }
+
+        var data2  = document.createElement("td");
+        var input1 = document.createElement("input");
+        input1.setAttribute("type", "text");
+        input1.setAttribute("name", "name");
+        data2.appendChild(input1);
+
+        var data3  = document.createElement("td");
+        var input2 = document.createElement("input");
+        input2.setAttribute("type", "text");
+        input2.setAttribute("name", "email");
+        data3.appendChild(input2);
+
+        row.appendChild(data1);
+        row.appendChild(data2);
+        row.appendChild(data3);
+
+        if(inputs > 0)
+        {
+           var parent_row = data1.parentNode;
+           var img = data1.firstChild;
+           img.addEventListener("click", function(){
+              removeContact(parent_row);
+           });
+        }
+
+        tbl.appendChild(row);
+        inputs++;
+			}
+
+      // проверяется введением в строки чисел и отслеживанием, что удаляются промежуточные
+      function removeContact(tr){
+        var tbl = tr.parentNode;
+        tbl.removeChild(tr);
+			}
+		</script>
+</body>
+</html>
